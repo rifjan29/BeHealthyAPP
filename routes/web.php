@@ -37,17 +37,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('authors', Backend\AuthorsController::class, ['names' => [
         'index' => 'authors'
         ]]);
-    // Route Category
-    Route::resource('category', Backend\CategoryController::class, ['names' => [
-        'index' => 'category'
-        ]]);
     // Route Content
     Route::resource('content', Backend\ContentController::class, ['names' => [
         'index' => 'content'
-        ]]);
-    // Route Type
-    Route::resource('type', Backend\TypeController::class, ['names' => [
-        'index' => 'type'
         ]]);
     // Route Admin
     Route::resource('pengguna-admin','Backend\AdminController',['names'=> [
@@ -62,7 +54,6 @@ Route::middleware(['auth'])->group(function () {
 // Route::middleware(['auth'])->group(function () {
 
     Route::get('/','Backend\DashboardController@landingPage')->name('welcome');
-    Route::get('detail-artikel/{slug}', 'Backend\DashboardController@detailArtikel')->name('welcome-detail-artikel');
 //     Route::prefix('admin')->group(function )
 // });
 require __DIR__.'/auth.php';
