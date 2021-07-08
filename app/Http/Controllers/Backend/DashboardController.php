@@ -35,14 +35,15 @@ class DashboardController extends Controller
                                            ->get();
         // $this->param['type'] = Type::all();
         // return $this->param;
-        return view('welcome', $this->param);
+        return view('welcome', $this->param);   
     }
 
     public function detailArtikel($slug)
-    {
+    { 
         $this->param['detailArtikel'] = Article::select('*')
-                                        ->where('slug', $slug)
-                                        ->get();
-        return $this->param;
+                                                 ->where('slug', $slug)
+                                                 ->get();
+        return view('detailArtikel');
     }
+
 }

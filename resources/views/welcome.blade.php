@@ -142,9 +142,9 @@
                 <p class="my-4 pe-xl-5"> Terdapat beberapa artikel terbaru yang dapat dinikmati oleh pengunjung.</p>
                 <div class="row">
                     @foreach ($artikel as $item)
-                    <div class="col-md-6">
+                      <div class="col-md-6">
                         <div class="mb-4">
-                            <a href="{{ route('welcome-detail-artikel', $item->slug) }}">
+                            <a href="{{route('welcome-detail', $item->slug) }}">
                             <div class="py-4"><img class="img-fluid" src="{{ asset('landingpage/assets/img/gallery/artikel-1.png') }}" width="450" alt="" /></div>
                             </a>
                             <div class="row">
@@ -173,7 +173,7 @@
                 </div>
                 <hr>
                 <div class="d-flex justify-content-end">
-                  <a class="btn btn-lg btn-primary rounded-pill hover-top" href="{{ route('welcome-detail-artikel', $item->slug) }}" role="button">Selanjutnya</a>
+                  <a class="btn btn-lg btn-primary rounded-pill hover-top" href="" role="button">Selanjutnya</a>
                 </div>
               </div>
             </div>

@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
 // Route::middleware(['auth'])->group(function () {
 
     Route::get('/','Backend\DashboardController@landingPage')->name('welcome');
+    Route::get('detail-artikel/{slug}', 'Backend\DashboardController@detailArtikel')->name('welcome-detail');
 //     Route::prefix('admin')->group(function )
 // });
 require __DIR__.'/auth.php';
