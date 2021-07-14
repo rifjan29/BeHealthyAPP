@@ -65,7 +65,7 @@ class ArticleController extends Controller
         $image = $request->file('cover_artikel');
         $input['file'] = time().'.'.$image->getClientOriginalExtension();
 
-        $destinationPath = public_path('uploads/article/cover');
+        $destinationPath = public_path('uploads/article/cover/');
 
         $imgFile = Image::make($image->getRealPath());
 
@@ -74,7 +74,7 @@ class ArticleController extends Controller
         })->save($destinationPath.'/'.$input['file']);
 
         if (isset($input['file'])) {
-            $destinationPath = public_path('uploads/article/cover');
+            $destinationPath = public_path('uploads/article/cover/');
             $image->move($destinationPath, $input['file']);
             $addArticle->cover = $input['file'];
         }

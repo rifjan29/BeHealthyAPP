@@ -2,6 +2,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src=" {{ asset('backend/assets/js/main.js') }}"></script>
 
@@ -42,32 +43,19 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --}}
 <!--Local Stuff-->
 <script>
-    jQuery(document).ready(function($) {
-
-
-
-    });
-    // var val = document.getElementById('name').value;
-    // if (/^\s*$/.test(val)) {
-    //     console.log('tidak ada nilai');
-    // } else {
-    //     console.log('ada nilai');
-    // }
-
-    // var $nama = $("#name");
-    // console.log($nama);
-
-    // $(document).ready(function(){
-    //     $('#name').click(function(){
-    //         var nama = $("#name").val();
-    //         if (nama == '') {
-    //             alert('data kosong');
-    //         } else {
-    //            console.log(nama);
-    //         }
-    //     })
-    // })
-
+$(document).ready(() => {
+    $('#photos').change(function () {
+        const file = this.files[0];
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function (event) {
+                $('#photosPreview')
+                .attr("src",event.target.result);   
+            };
+            reader.readAsDataURL(file);
+        }
+    })
+});
 // Hapus data
 function deleteData(id) {
     swal({

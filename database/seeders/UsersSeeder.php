@@ -18,10 +18,8 @@ class UsersSeeder extends Seeder
 
         $addUser->name = 'Rifjan';
         $addUser->username = 'admin';
-        $addUser->email = 'rjndla@gmail.com';
+        $addUser->gender = 'L';
         $addUser->password = \Hash::make($pass);
         $addUser->save();
-
-
     }
 }

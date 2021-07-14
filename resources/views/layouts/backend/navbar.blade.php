@@ -12,14 +12,13 @@
 
             <div class="user-area dropdown float-right">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-avatar rounded-circle" src=" {{ asset('backend/images/admin.jpg') }}" alt="User Avatar">
+                    <span class="text-muted p-2" style="font-weight: bold">{{ Session::get('name') }}</span>
+                    <img class="user-avatar rounded-circle" src="{{ asset(Session::get('photos') != null ? 'uploads/profile/'.Session::get('photos') : 'uploads/profile/avatar-icon.jpg' ) }}" alt="User Avatar">
                 </a>
 
                 <div class="user-menu dropdown-menu">
-                    <a class="nav-link" href="#"><i class="fa fa- user"></i>Profil</a>
-
-                    <a class="nav-link" href="#"><i class="fa fa -cog"></i>Pengaturan</a>
-
+                    {{-- {{-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Profil</a> --}}
+                    <a class="nav-link" href="{{ route('edit-password')}}"><i class="fa fa -cog"></i>Reset Password</a>
                     {{-- <x-dropdown-link :href="route('logout')"
                     onclick="event.preventDefault();
                     this.closest('form').submit();">

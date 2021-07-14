@@ -18,9 +18,11 @@
                                 <div class="text-left dib">
                                     <div class="stat-text">
                                          @if ($artikel > 0)
-                                              {{$artikel}}  
+                                            <span class="count">
+                                                {{ $artikel }}  
+                                            </span>
                                          @else
-                                             tidak ada data
+                                             <span>No Data</span>
                                          @endif
                                     </div>
                                     <div class="stat-heading">Artikel</div>
@@ -41,10 +43,14 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text">
-                                        @if ($content>0)
-                                            {{$content}}
+                                        @if ($content > 0)
+                                            <span class="count">
+                                                {{ $content }}
+                                            </span>
                                         @else
-                                            tidak ada data
+                                            <span>
+                                                No Data
+                                            </span>
                                         @endif
                                         </div>
                                     <div class="stat-heading">Konten</div>
@@ -65,12 +71,14 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text">
-                                        @if ($authors>0)
-                                        {{$authors}}
-                                    @else
-                                        tidak ada data
-                                    @endif
-                                </div>
+                                        @if ($authors != 0)
+                                            <span class="count">
+                                                {{ $authors }}
+                                            </span>
+                                        @else
+                                            <span>No data </span>
+                                        @endif
+                                    </div>
                                     <div class="stat-heading">Authors</div>
                                 </div>
                             </div>
@@ -89,12 +97,13 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text">
-                                        @if ($type>0)
-                                        {{$type}}
-                                    @else
-                                        tidak ada data
-                                    @endif 
-                                </div>       
+                                        @if ($type != 0)
+                                            <span class="count">{{ $type }}</span>
+                                        @else
+                                            <span>Tidak ada data</span>
+                                        @endif
+                                     
+                                    </div>       
                                     <div class="stat-heading">Tipe</div>
                                 </div>
                             </div>
@@ -104,8 +113,6 @@
             </div>
         </div>
         <!-- /Widgets -->
-
-
     </div>
     <!-- .animated -->
 </div>

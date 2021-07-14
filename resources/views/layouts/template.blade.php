@@ -28,7 +28,7 @@
         <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
-
+    {{-- @include('layouts.backend.reset-password') --}}
     <!-- Scripts -->
     @include('layouts.backend.footer-script')
 </body>

@@ -2552,6 +2552,15 @@ footer.site-footer {
 }
 
 /* form input */
-input[type=text]{
+input[type=text], input[type=password] {
     font-size: 16px;
+}
+
+input[type=radio]{
+  content: '';
+  background: #fff;
+  border: 2px solid #311B92;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
 }

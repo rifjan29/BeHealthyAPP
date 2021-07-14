@@ -89,10 +89,6 @@ class AuthorsController extends Controller
             return $e;
       }
 
-        $newAuthor->save();
-        alert()->success('Berhasil menambahkan data Narator','Sukses')->autoclose(3000);
-        return redirect('dashboard/admin/authors');
-
     }
 
     /**

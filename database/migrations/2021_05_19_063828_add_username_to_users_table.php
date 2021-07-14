@@ -15,6 +15,9 @@ class AddUsernameToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('username',100)->after('name');
+            $table->string('photos')->after('username')->nullable();
+            $table->enum('gender',['L','P'])->after('photos');
+            // $table->string('no_hp',100)->after('name');
         });
     }
 
@@ -26,7 +29,9 @@ class AddUsernameToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->dropColumn('username');
+             $table->dropColumn(['username','photos','gender']);
+            //  $table->dropColumn('photos');
+            //  $table->dropColumn('gender');
         });
     }
 }

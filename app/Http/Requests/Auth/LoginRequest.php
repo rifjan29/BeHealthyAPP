@@ -49,13 +49,13 @@ class LoginRequest extends FormRequest
 
         // if (! Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
         // validasi menggunakan username untuk login
-        if (! Auth::attempt($this->only('username', 'password'), $this->filled('remember'))) {
+        if (! Auth::attempt( $this->only('username','password') , $this->filled('remember'))) {
 
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                // 'email' => __('auth.failed'),
                 'username' => __('auth.failed'),
+                // 'username' => __('auth.failed'),
                 'password' => __('auth.failed'),
             ]);
         }

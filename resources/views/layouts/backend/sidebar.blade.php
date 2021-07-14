@@ -15,12 +15,12 @@
                 <li class=" {{ request()->routeIs('authors') ? 'active' : '' }} ">
                     <a href=" {{ route('authors') }} "> <i class="menu-icon ti-id-badge"></i>Narator</a>
                 </li>
-                <li class=" {{ request()->routeIs('type') ? 'active' : '' }} ">
+                {{-- <li class=" {{ request()->routeIs('type') ? 'active' : '' }} ">
                     <a href=" {{ route('type') }} "> <i class="menu-icon ti-list"></i>Tipe</a>
-                </li>
-                <li class=" {{ request()->routeIs('category') ? 'active' : '' }} ">
+                </li> --}}
+                {{-- <li class=" {{ request()->routeIs('category') ? 'active' : '' }} ">
                     <a href=" {{ route('category') }} "> <i class=" menu-icon ti-layout-list-thumb"></i>Kategori </a>
-                </li>
+                </li> --}}
                 <li class="{{ request()->routeIs('pengguna-admin') }}">
                     <a href="{{ route('pengguna-admin') }}"> <i class="menu-icon ti-user"></i>Pengguna</a>
                 </li>

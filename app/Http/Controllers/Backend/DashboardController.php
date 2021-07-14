@@ -8,12 +8,19 @@ use App\Models\Authors;
 use App\Models\Konten;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
 
     public function index()
     {
+        $pengguna = Auth::user();
+        Session::put('id', $pengguna->id);
+        Session::put('name', $pengguna->name);
+        Session::put('photos', $pengguna->photos);
+
         $this->param['artikel'] = Article::all()->count();
 
         $this->param['authors'] = Authors::all()->count();
@@ -21,15 +28,15 @@ class DashboardController extends Controller
         $this->param['content'] = Konten::all()->count();
 
         $this->param['type'] = Type::all()->count();
+        // return $this->param['data'];
 
         return view('dashboard',$this->param);
-
     }
 
     // Untuk tampilan landing page
     public function landingPage()
     {
-        $this->param['artikel'] = Article::select('*')
+        $this->param['dataArtikel'] = Article::select('*')
                                            ->orderBy('id','DESC')
                                            ->limit('4')
                                            ->get();
