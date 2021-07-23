@@ -17,40 +17,27 @@ class DashboardController extends Controller
     public function index()
     {
         $pengguna = Auth::user();
-        Session::put('id', $pengguna->id);
-        Session::put('name', $pengguna->name);
-        Session::put('photos', $pengguna->photos);
+        if (isset($pengguna) != null) {
+            Session::put('id', $pengguna->id);
+            Session::put('name', $pengguna->name);
+            Session::put('photos', $pengguna->photos);
 
-        $this->param['artikel'] = Article::all()->count();
+            $this->param['artikel'] = Article::all()->count();
 
-        $this->param['authors'] = Authors::all()->count();
+            $this->param['authors'] = Authors::all()->count();
+    
+            $this->param['content'] = Konten::all()->count();
+    
+            $this->param['type'] = Type::all()->count();
+            // return $this->param['data'];
+    
+            return view('dashboard',$this->param);
+        }else{
+            return redirect()->route('login');
+        }
 
-        $this->param['content'] = Konten::all()->count();
-
-        $this->param['type'] = Type::all()->count();
-        // return $this->param['data'];
-
-        return view('dashboard',$this->param);
+       
     }
 
-    // Untuk tampilan landing page
-    public function landingPage()
-    {
-        $this->param['dataArtikel'] = Article::select('*')
-                                           ->orderBy('id','DESC')
-                                           ->limit('4')
-                                           ->get();
-        // $this->param['type'] = Type::all();
-        // return $this->param;
-        return view('welcome', $this->param);   
-    }
-
-    public function detailArtikel($slug)
-    { 
-        $this->param['detailArtikel'] = Article::select('*')
-                                                 ->where('slug', $slug)
-                                                 ->get();
-        return view('detailArtikel');
-    }
 
 }

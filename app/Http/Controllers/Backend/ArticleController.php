@@ -10,6 +10,7 @@ use Exception;
 use Path\To\DOMDocument;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 // use Intervention\Image\Facades\Image;
 
 class ArticleController extends Controller
@@ -173,27 +174,58 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateArticle = Article::findOrFail($id);
+        $request->validate([
+            'cove_artikel' => 'required|mimes:png,jpg,jpeg',
+            'title' => 'required|string',
+            'deskripsi' =>'required',
+        ],
+        [
+            'required' => 'Data harus terisi',
+            'mimes' => 'Ekstensi Harus png, jpg, jpeg',
 
-        $slug = Str::slug($request->title, '-');
+        ]);
+      try {
+        $slug = Str::slug($request->title, "-");
+        $updateArtikel = Article::find($id);
+        $updateArtikel->user_id = $request->userId;
+        $updateArtikel->title = $request->title;
+        $updateArtikel->slug = $slug;
 
-        // $slugTitle = date('')
+        // input cover artikel
+        $image = $request->file('cover_artikel');
+        $input['file'] = time().'.'.$image->getClientOriginalExtension();
+
+        $destinationPath = public_path('uploads/article/cover/');
+
+        $imgFile = Image::make($image->getRealPath());
+
+        $imgFile->resize(200,200, function($constraint){
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['file']);
+
+        if (isset($input['file'])) {
+            $destinationPath = public_path('uploads/article/cover/');
+            $image->move($destinationPath, $input['file']);
+            $updateArtikel->cover = $input['file'];
+             // Hapus foto lama
+             $lastImage = 'uploads/article/cover/'.$updateArtikel->cover;
+             if (File::exists($lastImage)) {
+                 File::delete($lastImage);    
+             }else{
+                 echo "Ttidak ada data public";
+             }
+        }
+        // end input artikel
 
         // input gambar deskripsi artikel
         $storage = 'uploads/article';
         $dom = new \DOMDocument();
         libxml_use_internal_errors(true);
         $dom->loadHTML($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NOIMPLIED);
-        // return $dom->saveHTML();
         libxml_clear_errors();
         $images = $dom->getElementsByTagName('img');
-        // variable untuk mengecek base64
-        $bs64 = 'base64';
         foreach ($images as $img) {
             $src = $img->getAttribute('src');
-            // if (strpos()) {
-            //     # code...
-            // }
             if (preg_match('/data:image/',$src)) {
                 preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
                 $mimeType = $groups['mime'];
@@ -208,11 +240,20 @@ class ArticleController extends Controller
                 $img->removeAttribute('src');
                 $img->setAttribute('src',$new_src);
                 $img->setAttribute('class', 'img-responsive');
-                // $addArticle->desc = $dom->saveHTML();
             }
         }
-        return $filePath;
         // end input deskripsi artikel
+        $deskripsi = $dom->saveHTML();
+        $updateArtikel->desc = $deskripsi;
+        $updateArtikel->save();
+        alert()->success('Data berhasil ditambahkan','Sukses')->autoclose(3000);
+        return redirect()->route('article');
+
+        }catch( Exception $e ){
+            return $e;
+        } catch (\Illuminate\Database\QueryException $e) {
+            return $e;
+       }
 
     }
 
@@ -224,6 +265,15 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteArticle = Article::find($id);
+        $lastImage = 'uploads/article/cover/'.$deleteArticle->cover;
+        if (File::exists($lastImage)) {
+            File::delete($lastImage);    
+        }else{
+            echo "Ttidak ada data public";
+        }
+        $deleteArticle->delete();
+        alert()->warning('Data berhasil Dihapus','Sukses')->autoclose(3000);
+        return redirect()->route('article');
     }
 }

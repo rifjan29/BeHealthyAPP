@@ -50,7 +50,7 @@
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
               <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Beranda</a></li>
               <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#features">Aplikasi</a></li>
-              <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#pricing">Artikel</a></li>
+              <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#artikel">Artikel</a></li>
               <li class="nav-item" data-anchor="data-anchor"><a class="nav-link fw-medium" href="#faq">Bantuan</a></li>
             </ul>
             <form class="ps-lg-5">
@@ -68,8 +68,8 @@
           <div class="row align-items-center py-8">
             <div class="col-md-5 col-lg-6 order-md-1 text-center text-md-end"><img class="img-fluid js-tilt" src="{{ asset('landingpage/assets/img/illustrations/Ilustrasi-Mobile.png') }}" width="350" alt="" data-tilt /></div>
             <div class="col-md-7 col-lg-6 text-center text-md-start slideRight"><span class="badge bg-light rounded-pill text-dark align-items-center d-flex flex-row-reverse justify-content-end mx-auto mx-md-0 ps-0 w-75 w-sm-50 w-md-75 w-xl-50 mb-3"># 200 Pengguna User Android<img class="img-fluid float-start me-3" src="{{ asset('landingpage/assets/img/illustrations/jumlah-user.png') }}" alt=""/></span>
-              <h1 class="mb-4 display-3 fw-bold lh-sm">Best app for your <br class="d-block d-lg-none d-xl-block" />Healthy</h1>
-              <p class="mt-3 mb-4 fs-1">Jaga Kesehatan mu dengan aplikasi Be Healthy. Download For Free <br class="d-none d-lg-block" />Selalu menjaga kebugaran jasmani anda.</p><a class="btn btn-lg btn-primary rounded-pill hover-top" href="#" role="button">Download Gratis</a>
+              <h1 class="mb-4 display-3 fw-bold lh-sm">Best APP for your <br class="d-block d-lg-none d-xl-block" />Healthy</h1>
+              <p class="mt-3 mb-4 fs-1">Jaga Kesehatan mu dengan aplikasi Be Healthy. <br class="d-none d-lg-block" />Menjaga kebugaran jasmani anda. Download For Free.</p><a class="btn btn-lg btn-primary rounded-pill hover-top" href="#" role="button">Download Gratis</a>
             </div>
           </div>
         </div>
@@ -82,26 +82,26 @@
             <div class="col-md-5 col-lg-7 order-md-0 text-center text-md-start"><img class="img-fluid" id="gambar-mobile" style="visibility: hidden" src="{{ asset('landingpage/assets/img/illustrations/Ilustrasi-Mobile2.png') }}" width="550" alt=""/></div>
             <div class="col-md-7 col-lg-5 px-sm-5 px-md-0 " style="visibility: hidden;" id="pilihan-data">
               <h6 class="fw-bold fs-4 display-3 lh-sm">Fitur Aplikasi yang <br/> Luar Biasa</h6>
-              <p class="my-4">Increase productivity with a simple to-do app. app for <br class="d-none d-xl-block" />managing your personal budgets.</p>
+              <p class="my-4">Memudahkan anda untuk selalu berolahraga <br class="d-none d-xl-block" />maupun menghidari stress dengan berbagai kesibukan anda.</p>
               <div class="d-flex align-items-center mb-5">
                 <div><img class="img-fluid" src="{{ asset('landingpage/assets/img/illustrations/icon-olahraga.png') }}" width="90" alt="" /></div>
                 <div class="px-4">
                   <h5 class="fw-bold text-danger">Olahraga Ringan</h5>
-                  <p>Get your blood tests delivered at <br class="d-none d-xl-block"> home collect a sample from the <br class="d-none d-xl-block"> news your blood tests</p>
+                  <p>Berbagai jenis olahraga ringan<br class="d-none d-xl-block">dengan animasi yang menarik<br class="d-none d-xl-block"></p>
                 </div>
               </div>
               <div class="d-flex align-items-center mb-5">
                 <div><img class="img-fluid" src="{{ asset('landingpage/assets/img/illustrations/icon-yoga.png') }}" width="90" alt="" /></div>
                 <div class="px-4">
                   <h5 class="fw-bold text-primary">Senam Yoga</h5>
-                  <p>Get your blood tests delivered at <br class="d-none d-xl-block"> home collect a sample from the <br class="d-none d-xl-block"> news your blood tests</p>
+                  <p>Bebagai senam Yoga yang dapat anda lakukan<br class="d-none d-xl-block"> Dirumah, Kantor, Tempat Tenang dll. <br class="d-none d-xl-block"></p>
                 </div>
               </div>
               <div class="d-flex align-items-center mb-5">
                 <div><img class="img-fluid" src="{{ asset('landingpage/assets/img/illustrations/icon-meditasi.png') }}" width="90" alt="" /></div>
                 <div class="px-4">
                   <h5 class="fw-bold text-success">Meditasi Musik</h5>
-                  <p>Get your blood tests delivered at <br class="d-none d-xl-block"> home collect a sample from the <br class="d-none d-xl-block"> news your blood tests</p>
+                  <p>Berbagai musik instrument yang dapat<br class="d-none d-xl-block">membuat ketenangan anda yang rasakan<br class="d-none d-xl-block"></p>
                 </div>
               </div>
             </div>
@@ -133,7 +133,7 @@
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
-      <section class="py-6">
+      <section class="py-6" id="artikel">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-md-5 order-md-1 text-center text-md-start tossing"><img class="mb-4" width="800" src="{{ asset('landingpage/assets/img/illustrations/artikel-bacground.png') }}" alt="" /></div>
@@ -141,40 +141,37 @@
                 <h6 class="fw-bold fs-4 display-3 lh-sm">Artikel Terbaru<br />dari Be Healthy</h6>
                 <p class="my-4 pe-xl-5"> Terdapat beberapa artikel terbaru yang dapat dinikmati oleh pengunjung.</p>
                 <div class="row">
-                    @foreach ($artikel as $item)
-                      <div class="col-md-6">
-                        <div class="mb-4">
-                            <a href="{{route('welcome-detail', $item->slug) }}">
-                            <div class="py-4"><img class="img-fluid" src="{{ asset('landingpage/assets/img/gallery/artikel-1.png') }}" width="450" alt="" /></div>
-                            </a>
-                            <div class="row">
-                                <div class="col-lg-7 d-flex justify-content-start">
-                                    <h5 class="fw-bold text-undefined"> {{ $item->title }} </h5>
-                                </div>
-                                <div class="col-lg-5 d-flex justify-content-end info-text">
-                                    <div class="">
-                                        <p class="text-muted">
-                                            @if (isset($item->updated_at))
-                                                {{ date('d M Y', strtotime($item->updated_at)) }}
-                                            @else
-                                                {{ date('d M Y', strtotime($item->created_at )) }}
-                                            @endif
-                                        </p>
-                                    </div>
-                                </div>
+                  @foreach ($artikel as $item)
+                    <div class="col-md-6">
+                      <div class="mb-4">
+                          <a href="">
+                          <div class="py-4 pb-2"><img class="img-fluid" src="{{ asset('uploads/article/cover/'.$item->cover) }}" width="450" alt="" /></div>
+                          </a>
+                          <div class="row">
+                            <div class="col-lg-12 d-flex justify-content-end info-text p-0 m-0">
+                              <div class="">
+                                  <p class="text-muted">
+                                      @if (isset($item->updated_at))
+                                          {{ date('d M Y', strtotime($item->updated_at)) }}
+                                      @else
+                                          {{ date('d M Y', strtotime($item->created_at )) }}
+                                      @endif
+                                  </p>
+                              </div>
                           </div>
-                          <p class="mt-2 mb-0">Get your blood tests delivered at home collect a sample from the news your blood tests.</p>
-                          <div class="d-flex justify-content-end">
-                            <a class="btn btn-lg btn-primary rounded-pill hover-top mt-4" href="#" role="button">Selengkapnya</a>
-                          </div>
+                              <div class="col-lg-12 d-flex justify-content-start">
+                                  <h5 class="fw-bold text-undefined">{{ $item->title }}</h5>
+                              </div>
                         </div>
+                        <p class="mt-2 mb-0">{!! substr($item->desc, 0, 150)."[..]" !!}.</p>
+                        <div class="d-flex justify-content-end">
+                          <a class="btn btn-lg btn-primary rounded-pill hover-top mt-4" href="{{ url('detail_artikel/'.$item->slug) }}" role="button">Selengkapnya</a>
+                        </div>
+                      </div>
                     </div>
-                    @endforeach
+                  @endforeach
                 </div>
                 <hr>
-                <div class="d-flex justify-content-end">
-                  <a class="btn btn-lg btn-primary rounded-pill hover-top" href="" role="button">Selanjutnya</a>
-                </div>
               </div>
             </div>
           </div>

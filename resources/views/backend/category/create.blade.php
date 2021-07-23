@@ -29,7 +29,7 @@
                                 <div class="col-lg-8">
                                     <label for="tipe">Tipe<span class="text-required">*</span></label>
                                     <select name="tipe" id="tipe" class="form-control-lg form-control" style="font-size: 16px">
-                                        <option value="0">Pilih Kategori</option>
+                                        <option value="0">Pilih Tipe</option>
                                         @foreach ($tipe as $items)
                                         <option value="{{ $items->id }}">{{ $items->type }}</option>
                                         @endforeach

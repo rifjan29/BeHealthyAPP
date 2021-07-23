@@ -15,8 +15,8 @@ class AddJobsToAuthors extends Migration
     {
         Schema::table('authors', function (Blueprint $table) {
             $table->string('jobs')->nullable()->after('gender');
-            $table->unsignedTinyInteger('category_id')->after('jobs');;
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('restrict')->onUpdate('cascade');
+            // $table->unsignedTinyInteger('category_id')->after('jobs');;
+            // $table->foreign('category_id')->references('id')->on('category')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 
@@ -28,7 +28,7 @@ class AddJobsToAuthors extends Migration
     public function down()
     {
         Schema::table('authors', function (Blueprint $table) {
-            $table->dropColumn(['jobs','category_id']);
+            $table->dropColumn('jobs');
         });
     }
 }

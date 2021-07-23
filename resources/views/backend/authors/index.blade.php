@@ -3,8 +3,8 @@
 {{-- content pengarang --}}
 @section('content')
     <x-breadcrumb
-    title="Data Narator"
-    subtitle="Narator"
+    :title="$title"
+    subtitle="Data Narator"
     link="{{route('dashboard')}}"
     :linkBaru="$linkBaru"
     :subtitleBaru="$subtitleBaru"/>

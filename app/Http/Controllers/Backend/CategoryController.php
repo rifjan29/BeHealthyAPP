@@ -132,6 +132,7 @@ class CategoryController extends Controller
             $updateCategory = Category::findOrFail($id);
             $updateCategory->name_category = $request->kategori;
             $updateCategory->type_id = $request->tipe;
+            $updateCategory->updated_at = date('Y-m-d H:m:s');
             $updateCategory->save();
 
             alert()->success('Berhasil Mengganti data kategori', 'Sukses')->autoclose(3000);

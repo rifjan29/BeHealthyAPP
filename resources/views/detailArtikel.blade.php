@@ -40,63 +40,59 @@
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
-  
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="index.html">
+            <img src=" {{ asset('landingpage/assets/img/icons/Logo-Web.png') }} " alt="">
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
+              <li class="nav-item" ><a class="nav-link fw-medium active" aria-current="page" href="{{ route('welcome') }}#home">Beranda</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="{{ route('welcome') }}#features">Aplikasi</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="{{ route('welcome') }}#artikel">Artikel</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="{{ route('welcome') }}#faq">Bantuan</a></li>
+            </ul>
+            <form class="ps-lg-5">
+              <button class="btn btn-lg btn-primary rounded-pill order-0" type="submit">Download Gratis</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <section class="py-0" id="home">
+        <div class="bg-holder " style="background-image:url( {{ asset('landingpage/assets/img/illustrations/hero-bg.png') }} );background-position:bottom;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container position-relative">
+          <div class="row align-items-center py-8">
+            <div class="col-md-5 col-lg-6 order-md-1 text-center text-md-end"><img class="img-fluid js-tilt" src="{{ asset('landingpage/assets/img/illustrations/Ilustrasi-Mobile.png') }}" width="350" alt="" data-tilt /></div>
+            <div class="col-md-7 col-lg-6 text-center text-md-start slideRight"><span class="badge bg-light rounded-pill text-dark align-items-center d-flex flex-row-reverse justify-content-end mx-auto mx-md-0 ps-0 w-75 w-sm-50 w-md-75 w-xl-50 mb-3"># 200 Pengguna User Android<img class="img-fluid float-start me-3" src="{{ asset('landingpage/assets/img/illustrations/jumlah-user.png') }}" alt=""/></span>
+              <h1 class="mb-4 display-3 fw-bold lh-sm">Best APP for your <br class="d-block d-lg-none d-xl-block" />Healthy</h1>
+              <p class="mt-3 mb-4 fs-1">Jaga Kesehatan mu dengan aplikasi Be Healthy. <br class="d-none d-lg-block" />Menjaga kebugaran jasmani anda. Download For Free.</p><a class="btn btn-lg btn-primary rounded-pill hover-top" href="#" role="button">Download Gratis</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
       <section class="py-5" id="features">
         <div class="container-lg">
           <div class="row align-items-center">
             <article class="blog-post">
-                <h2 class="blog-post-title">Sample blog post</h2>
-                <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
+              <center>
+                <img src="{{ asset('uploads/article/cover/1626939212.jpg') }}" alt="" class="img-fluid rounded w-75" srcset="">
+              </center>
+                <h2 class="blog-post-title mt-4" style="font-weight: bold">{{ $artikel->title }}</h2>
+                <p class="blog-post-meta">
+                  @if (isset($artikel->updated_at))
+                    {{ date('d M Y', strtotime($artikel->updated_at)) }}
+                  @else
+                      {{ date('d M Y', strtotime($artikel->created_at )) }}
+                  @endif
+                  by {{ $artikel->user->name }}</p>
         
-                <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-                <hr>
-                <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                <h2>Blockquotes</h2>
-                <p>This is an example blockquote in action:</p>
-                <blockquote class="blockquote">
-                  <p>Quoted text goes here.</p>
-                </blockquote>
-                <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                <h3>Example lists</h3>
-                <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout. This is an example unordered list:</p>
-                <ul>
-                  <li>First list item</li>
-                  <li>Second list item with a longer description</li>
-                  <li>Third list item to close it out</li>
-                </ul>
-                <p>And this is an ordered list:</p>
-                <ol>
-                  <li>First list item</li>
-                  <li>Second list item with a longer description</li>
-                  <li>Third list item to close it out</li>
-                </ol>
-                <p>And this is a definiton list:</p>
-                <dl>
-                  <dt>HyperText Markup Language (HTML)</dt>
-                  <dd>The language used to describe and define the content of a Web page</dd>
-                  <dt>Cascading Style Sheets (CSS)</dt>
-                  <dd>Used to describe the appearance of Web content</dd>
-                  <dt>JavaScript (JS)</dt>
-                  <dd>The programming language used to build advanced Web sites and applications</dd>
-                </dl>
-                <h2>Inline HTML elements</h2>
-                <p>HTML defines a long list of available inline tags, a complete list of which can be found on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla Developer Network</a>.</p>
-                <ul>
-                  <li><strong>To bold text</strong>, use <code class="language-plaintext highlighter-rouge">&lt;strong&gt;</code>.</li>
-                  <li><em>To italicize text</em>, use <code class="language-plaintext highlighter-rouge">&lt;em&gt;</code>.</li>
-                  <li>Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use <code class="language-plaintext highlighter-rouge">&lt;abbr&gt;</code>, with an optional <code class="language-plaintext highlighter-rouge">title</code> attribute for the full phrase.</li>
-                  <li>Citations, like <cite>— Mark Otto</cite>, should use <code class="language-plaintext highlighter-rouge">&lt;cite&gt;</code>.</li>
-                  <li><del>Deleted</del> text should use <code class="language-plaintext highlighter-rouge">&lt;del&gt;</code> and <ins>inserted</ins> text should use <code class="language-plaintext highlighter-rouge">&lt;ins&gt;</code>.</li>
-                  <li>Superscript <sup>text</sup> uses <code class="language-plaintext highlighter-rouge">&lt;sup&gt;</code> and subscript <sub>text</sub> uses <code class="language-plaintext highlighter-rouge">&lt;sub&gt;</code>.</li>
-                </ul>
-                <p>Most of these elements are styled by browsers with few modifications on our part.</p>
-                <h2>Heading</h2>
-                <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                <h3>Sub-heading</h3>
-                <p>This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                <pre><code>Example code block</code></pre>
-                <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
+              {!! $artikel->desc !!}
               </article>
           </div>
         </div>

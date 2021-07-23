@@ -42,8 +42,8 @@ link="{{ route('dashboard')}}"
                                     <td>
                                         <div class="btn-group button-group" role="group" aria-label="Basic example">
                                             <a class="btn btn-outline-link btn-sm button-edit" href="{{ route('pengguna-admin.edit', $item->id) }}" {{ Session::get('id') == $item->id ? '' : 'disabled' }}  aria-current="page" > <i class="ti-settings"></i>&nbsp; Edit</a>
-                                            <form action="  " method="POST" id="delete-" >@csrf @method('delete')</form>
-                                            <button class="btn btn-outline-link btn-sm button-hapus" type="submit" onclick="deleteData()" {{ Session::get('id') == $item->id ? '' : 'disabled' }}> <i class="ti-trash"></i>&nbsp; Hapus</button>
+                                            <form action=" {{ route('pengguna-admin.destroy', $item->id) }} " method="POST" id="delete-{{ $item->id }}" >@csrf @method('delete')</form>
+                                            <button class="btn btn-outline-link btn-sm button-hapus" type="submit" onclick="deleteData({{ $item->id }})"> <i class="ti-trash"></i>&nbsp; Hapus</button>
                                         </div>
                                     </td>
                                 </tr>

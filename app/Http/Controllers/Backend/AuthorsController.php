@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Authors;
 use Exception;
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 class AuthorsController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class AuthorsController extends Controller
 
     public function __construct()
     {
-        $this->param['title'] = null;
+        $this->param['title'] = 'Data Narator';
     }
     public function index()
     {
@@ -38,7 +38,6 @@ class AuthorsController extends Controller
         $this->param['title'] = "Tambah Data";
         $this->param['linkBaru'] = 'authors';
         $this->param['subtitleBaru'] = 'Narator';
-
         return view('backend.authors.create',$this->param);
     }
 
@@ -52,9 +51,6 @@ class AuthorsController extends Controller
     {
         $this->param['linkBaru'] = null;
         $this->param['subtitleBaru'] = null;
-
-
-      try {
         $validateData = $request->validate([
             'name' => 'required|string|min:2',
             'jobs' => 'max:100',
@@ -71,7 +67,9 @@ class AuthorsController extends Controller
             'jobs' => 'Pekerjaan',
             'gender' => 'Jenis Kelamin'
         ]);
+        
 
+        try {
             $newAuthor = new Authors;
             $newAuthor->name_author = $request->name;
             $newAuthor->gender = $request->gender;
@@ -82,12 +80,12 @@ class AuthorsController extends Controller
             }
             $newAuthor->save();
             alert()->success('Berhasil menambahkan data Narator','Sukses')->autoclose(3000);
-            return redirect('dashboard/admin/authors');
-      } catch (Exception $e) {
-            return $e;
-      }catch(\Illuminate\Database\QueryException $e){
-            return $e;
-      }
+            return redirect('dashboard/authors');
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
 
     }
 
@@ -113,9 +111,14 @@ class AuthorsController extends Controller
         $this->param['title'] = "Edit Data";
         $this->param['linkBaru'] = 'authors';
         $this->param['subtitleBaru'] = 'Narator';
-
-        $this->param['data'] = Authors::where('id', $id)->first();
-        return view('backend.authors.create', $this->param);
+        try {
+            $this->param['data'] = Authors::where('authors.id', $id)->first();
+            return view('backend.authors.update', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
     }
 
     /**
@@ -127,22 +130,40 @@ class AuthorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'jobs' => 'required|min:5',
-            'gender' => 'required'
-        ],
-        [
-            'required' => 'Data harus terisi',
-            'min' => 'Data harus lebih dari 5 karakter'
-        ]);
-        $updateAuthor = Authors::findOrFail($id);
-        $updateAuthor->name_author = $request->name;
-        $updateAuthor->jobs = $request->jobs;
-        $updateAuthor->gender = $request->gender;
-        $updateAuthor->updated_at = date('Y-m-d H:m:s');
-        $updateAuthor->save();
-        return redirect('dashboard/admin/authors');
+        try {
+            $updateAuthor = Authors::find($id);
+            $updateAuthor->name_author = $request->name;
+            $updateAuthor->gender = $request->gender;
+            $updateAuthor->updated_at = date('Y-m-d H:m:s');
+            if (isset($request->jobs)) {
+                $updateAuthor->jobs = $request->jobs;
+             }else{
+                $updateAuthor->jobs = null;
+            }
+            $updateAuthor->save();
+            alert()->warning('Berhasil Mengganti data Narator','Sukses')->autoclose(3000);
+            return redirect('dashboard/authors');
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+        // $request->validate([
+        //     'name' => 'required',
+        //     'jobs' => 'required|min:5',
+        //     'gender' => 'required'
+        // ],
+        // [
+        //     'required' => 'Data harus terisi',
+        //     'min' => 'Data harus lebih dari 5 karakter'
+        // ]);
+        // $updateAuthor = Authors::findOrFail($id);
+        // $updateAuthor->name_author = $request->name;
+        // $updateAuthor->jobs = $request->jobs;
+        // $updateAuthor->gender = $request->gender;
+        // $updateAuthor->updated_at = date('Y-m-d H:m:s');
+        // $updateAuthor->save();
+        // return redirect('dashboard/authors');
 
     }
 
@@ -156,7 +177,7 @@ class AuthorsController extends Controller
     {
         $deleteAuthor = Authors::findOrFail($id);
         $deleteAuthor->delete();
-        alert()->warning('Data berhasil dihapus')->autoclose();
-        return redirect('dashboard/admin/authors');
+        alert()->warning('Data berhasil dihapus')->autoclose(3000);
+        return redirect('dashboard/authors');
     }
 }

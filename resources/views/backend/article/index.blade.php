@@ -44,8 +44,8 @@
                                             <div class="btn-group button-group" role="group" aria-label="Basic example">
                                                 {{-- <a href=" {{ route('authors.edit', 1) }} "> Edit</a> --}}
                                                 <a class="btn btn-outline-link btn-sm button-edit" href=" {{ route('article.edit', $item->id) }} "  aria-current="page" > <i class="ti-settings"></i>&nbsp; Edit</a>
-                                                <form action="  " method="POST" id="delete-" >@csrf @method('delete')</form>
-                                                <button class="btn btn-outline-link btn-sm button-hapus" type="submit" onclick="deleteData()"> <i class="ti-trash"></i>&nbsp; Hapus</button>
+                                                <form action="{{ route('article.destroy', $item->id) }}" method="POST" id="delete-{{ $item->id }}" >@csrf @method('delete')</form>
+                                                <button class="btn btn-outline-link btn-sm button-hapus" type="submit" onclick="deleteData({{ $item->id }})"> <i class="ti-trash"></i>&nbsp; Hapus</button>
                                             </div>
                                         </td>
                                     </tr>

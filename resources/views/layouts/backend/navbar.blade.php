@@ -18,7 +18,7 @@
 
                 <div class="user-menu dropdown-menu">
                     {{-- {{-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Profil</a> --}}
-                    <a class="nav-link" href="{{ route('edit-password')}}"><i class="fa fa -cog"></i>Reset Password</a>
+                    <a class="nav-link" href="{{ route('update-password')}}"><i class="fa fa -cog"></i>Reset Password</a>
                     {{-- <x-dropdown-link :href="route('logout')"
                     onclick="event.preventDefault();
                     this.closest('form').submit();">

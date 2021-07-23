@@ -18,17 +18,11 @@ use App\Http\Controller\TypeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     // Route::name('dashboard.')->group(function( {
-    Route::prefix('dashboard/admin')->group(function (){
+    Route::prefix('dashboard')->group(function (){
         // Route artikel
         Route::resource('article', Backend\ArticleController::class, ['names' => [
         'index' => 'article'
@@ -54,6 +48,12 @@ Route::middleware(['auth'])->group(function () {
         'index' =>'pengguna-admin'
     ]]);
 
+     //Reset Password
+     Route::get('edit-password/', 'Backend\AdminController@editPassword')->name('edit-password');
+     Route::post('edit-password/', 'Backend\AdminController@updatePassword')->name('update-password');
+
+    // change status
+    Route::get('content/change_status/{id}/{status}', 'Backend\ContentController@changeStatus')->name('change-status');
     });
 });
 
@@ -61,7 +61,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'Backend\DashboardController@index')->name('dashboard');
 // Route::middleware(['auth'])->group(function () {
 
-    Route::get('/','Backend\DashboardController@landingPage')->name('welcome');
-//     Route::prefix('admin')->group(function )
-// });
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
+    // Route::get('/','Backend\DashboardController@landingPage')->name('welcome');
+    Route::get('/','LandingPageController@index')->name('welcome');
+    Route::get('/detail_artikel/{slug}','LandingPageController@detailArticle')->name('detail_artikel');
+
 require __DIR__.'/auth.php';

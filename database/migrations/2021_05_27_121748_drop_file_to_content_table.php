@@ -14,8 +14,8 @@ class DropFileToContentTable extends Migration
     public function up()
     {
         Schema::table('content', function (Blueprint $table) {
-            // $table->dropForeign('content_category_id_foreign');
-            $table->dropColumn('file');
+            $table->unsignedTinyInteger('category_id')->after('authors_id');
+            $table->foreign('category_id')->references('id')->on('category')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 
@@ -27,8 +27,7 @@ class DropFileToContentTable extends Migration
     public function down()
     {
         Schema::table('content', function (Blueprint $table) {
-            $table->string('file',100);
-            // $table->unsignedTinyInteger('category_id');
+            $table->dropColumn('category_id');
         });
     }
 }

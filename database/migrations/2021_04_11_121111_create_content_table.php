@@ -21,7 +21,7 @@ class CreateContentTable extends Migration
             $table->string('cover', 100)->nullable();
             $table->text('desc');
             $table->string('file',100)->nullable();
-            $table->string('duration',100);
+            $table->string('duration',100)->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->foreign('authors_id')->references('id')->on('authors')->onDelete('restrict')->onUpdate('cascade');

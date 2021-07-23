@@ -145,6 +145,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     // 'username' => 'required|min:4|unique:users,username,except,id',
     {
+        return $request;
         $request->validate([
             'name' => 'required|min:5',
             'username' => 'required|min:4',
@@ -195,7 +196,7 @@ class AdminController extends Controller
             }else{
                 echo "Tidak ada data baru";
             }
-
+                $updatePengguna->updated_at = date('Y-m-d H:m:s');
                 $updatePengguna->save();
                 // alert()->danger('Gagal periksa kembali data anda')->autclose(3000);
                 alert()->warning('Data Berhasil Diupdate', 'Sukses')->autoclose(3500);
@@ -216,7 +217,25 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $deletePengguna = User::find($id);
+            $deletePhotos = 'uploads/profile/'.$deletePengguna->photos;
+            if (File::exists($deletePhotos)) {
+                File::delete($deletePhotos);    
+            }else{
+
+                echo "Ttidak ada data public";
+            }
+            $deletePengguna->delete();
+            alert()->warning('Data berhasil dihapus')->autoclose(3000);
+            return redirect()->route('pengguna-admin');
+            
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+       
     }
 
     // Reset Password
